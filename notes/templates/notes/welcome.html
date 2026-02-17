@@ -1,0 +1,58 @@
+{% extends 'notes/base.html' %}
+
+{% block title %}Welcome to Notes App{% endblock %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center">
+    <div class="mb-4">
+        <i class="bi bi-journal-richtext text-primary" style="font-size: 5rem;"></i>
+    </div>
+    <h1 class="display-5 fw-bold text-body-emphasis">Capture Your Thoughts</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">The simple, secure, and beautiful way to organize your ideas. Create notes, categorize them, and access them from anywhere. Free and open source.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        {% if user.is_authenticated %}
+            <a href="{% url 'note_list' %}" class="btn btn-primary btn-lg px-4 gap-3">
+                <i class="bi bi-arrow-right-circle"></i> Go to My Notes
+            </a>
+            <a href="{% url 'note_create' %}" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-plus-lg"></i> Create New
+            </a>
+        {% else %}
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+        {% endif %}
+      </div>
+    </div>
+</div>
+
+<div class="row g-4 py-5 row-cols-1 row-cols-lg-3 border-top">
+    <div class="col d-flex align-items-start">
+      <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 rounded p-3">
+        <i class="bi bi-shield-lock text-primary"></i>
+      </div>
+      <div>
+        <h3 class="fs-2 text-body-emphasis">Secure</h3>
+        <p>Your notes are private to you. We use Django's robust authentication system to ensure your data stays yours.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 rounded p-3">
+        <i class="bi bi-tags text-success"></i>
+      </div>
+      <div>
+        <h3 class="fs-2 text-body-emphasis">Organized</h3>
+        <p>Group your thoughts using Categories. Keep your personal and work life separate with ease.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3 rounded p-3">
+        <i class="bi bi-moon-stars text-secondary"></i>
+      </div>
+      <div>
+        <h3 class="fs-2 text-body-emphasis">Simple</h3>
+        <p>No clutter. Just a clean, distraction-free interface designed to help you focus on writing.</p>
+      </div>
+    </div>
+</div>
+{% endblock %}

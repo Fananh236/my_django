@@ -1,0 +1,28 @@
+{% extends "notes/base.html" %}
+
+{% block content %}
+<div class="card p-4">
+    <h2 class="mb-4">🗂 My Categories</h2>
+    
+    {% if categories %}
+    <ul class="list-group">
+        {% for category in categories %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'category_notes' category.id %}" class="text-decoration-none fw-bold">
+                {{ category.name }}
+            </a>
+            <span class="badge bg-primary rounded-pill">{{ category.note_set.count }} Notes</span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="alert alert-info">
+        You don't have any categories yet. 
+    </div>
+    {% endif %}
+    
+    <div class="mt-4">
+        <a href="{% url 'category_create' %}" class="btn btn-success">Create New Category</a>
+    </div>
+</div>
+{% endblock %}
